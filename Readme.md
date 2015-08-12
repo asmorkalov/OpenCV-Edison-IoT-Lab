@@ -1,7 +1,7 @@
 0. Setup
 --------
 
-Presentation: https://docs.google.com/presentation/d/1QTjIc7SYYPDvMjUz48SvLBXkPsa0FZaft1zA4e31U6g/edit?usp=sharing
+Презентация: https://docs.google.com/presentation/d/1QTjIc7SYYPDvMjUz48SvLBXkPsa0FZaft1zA4e31U6g/edit?usp=sharing
 
     $ sudo apt-get install -y wget git cmake build-essential
     $ git clone <repo_path>
@@ -31,12 +31,28 @@ Presentation: https://docs.google.com/presentation/d/1QTjIc7SYYPDvMjUz48SvLBXkPs
     $ make
     $ ./facedetect ../lena.png
 
-4. Face detection - device
---------------------------
+4. Edges - device
+-----------------
 
     $ cd 3.FaceDetect
-    $ cmake -DCMAKE_TOOLCHAIN_FILE=../edison.toolchain.cmake -DOpenCV_DIR=../opencv-build/
+    $ cmake -DCMAKE_TOOLCHAIN_FILE=../edison.toolchain.cmake -DOpenCV_DIR=../opencv-build-board/
     $ make
     scp ./facedetect root@192.168.2.15:/home/root/
     scp ../lena.png root@192.168.2.15:/home/root/
     $ ssh root@192.168.2.15 "/home/root/facedetect /home/root/lena.png"
+
+5. FaceDetect - device
+----------------------
+
+    $ cd 3.FaceDetect
+    $ cmake -DCMAKE_TOOLCHAIN_FILE=../edison.toolchain.cmake -DOpenCV_DIR=../opencv-build-board/
+    $ make
+    scp ./facedetect root@192.168.2.15:/home/root/
+    scp ../lena.png root@192.168.2.15:/home/root/
+    $ ssh root@192.168.2.15 "/home/root/facedetect /home/root/lena.png"
+
+ 5. Общее
+ --------
+
+ Сессия screen для работы с устройством:
+  sudo screen /dev/ttyUSB0 115200
